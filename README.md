@@ -43,6 +43,8 @@ Muchos negocios como cafeterías aún gestionan su inventario de forma manual, l
 ## 👨‍🎓 Autor
 
 - **Luis Carlos Garavito Agámez**
+- **Willian Esteven Ramos Argel**
+- **Kener David Guazne Alvarez**
 - Ingeniería de Software II – 2025
 
 ---
