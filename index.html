@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaféGestión - Sistema para Cafeterías</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Encabezado principal -->
+    <header>
+        <h1>CaféGestión</h1>
+        <p>Control de productos e inventario para tu cafetería</p>
+    </header>
+
+    <!-- Formulario para agregar o editar productos -->
+    <section class="form-section">
+        <h2>Agregar / Editar Producto</h2>
+        <form id="product-form">
+
+            <!-- Campo oculto para el ID del producto (se usa al editar) -->
+            <input type="hidden" id="product-id">
+
+            <!-- Nombre del producto -->
+            <label for="name">Nombre del producto:</label>
+            <input type="text" id="name" placeholder="Ej: Capuchino" required>
+
+            <!-- Categoría del producto -->
+            <label for="category">Categoría:</label>
+            <select id="category" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="Bebida caliente">Bebida caliente</option>
+                <option value="Bebida fría">Bebida fría</option>
+                <option value="Panadería">Panadería</option>
+                <option value="Repostería">Repostería</option>
+                <option value="Snack">Snack</option>
+            </select>
+
+            <!-- Precio del producto -->
+            <label for="price">Precio ($):</label>
+            <input type="number" id="price" min="0" step="0.01" placeholder="Ej: 8500" required>
+
+            <!-- Stock disponible -->
+            <label for="stock">Stock disponible:</label>
+            <input type="number" id="stock" min="0" step="1" placeholder="Ej: 25" required>
+
+            <!-- Descripción del producto -->
+            <label for="description">Descripción:</label>
+            <textarea id="description" placeholder="Descripción breve del producto..."></textarea>
+
+            <!-- Botón de envío -->
+            <button type="submit">Guardar Producto</button>
+        </form>
+    </section>
+
+    <!-- Sección de listado de productos -->
+    <section class="table-section">
+        <h2>Lista de Productos</h2>
+
+        <!-- Barra de búsqueda -->
+        <div style="margin-bottom: 15px;">
+            <label for="search">Buscar producto:</label>
+            <input type="text" id="search" placeholder="Ej: capuchino, snack, etc.">
+        </div>
+
+        <!-- Tabla que mostrará los productos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <!-- Aquí se insertarán dinámicamente los productos desde app.js -->
+            <tbody id="product-table-body">
+                <!-- Contenido generado por JavaScript -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Archivo JavaScript con la lógica del sistema -->
+    <script src="app.js"></script>
+
+</body>
+</html>
