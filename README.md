@@ -40,19 +40,18 @@ Esto mejora el control de acceso a los datos, evita duplicaciones innecesarias y
 ## 🛠 Estructura del proyecto
 
 CaféGestión/
-│
-├── assets/
-│ ├── css/
-│ │ └── style.css
-│ └── img/
-│ └── Logo.png, Logo.ico
-│
-├── js/
-│ ├── productoManager.js ← Singleton implementado aquí
-│ └── app.js ← Lógica principal conectada al Singleton
-│
+├── activos/
+│   ├── css/
+│   │   └── style.css
+│   ├── img/
+│   │   ├── Logo.png
+│   │   └── Logo.ico
+│   └── js/
+│       ├── productoManager.js   ← Singleton implementado aquí
+│       └── app.js               ← Lógica principal conectada al Singleton
 ├── index.html
-├── README.md
+└── README.md
+
 
 ---
 
