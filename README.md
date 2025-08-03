@@ -52,7 +52,7 @@ CaféGestión/
 │       └── app.js               ← Lógica principal conectada al Singleton
 ├── index.html
 └── README.md
-
+``` 
 
 ---
 
