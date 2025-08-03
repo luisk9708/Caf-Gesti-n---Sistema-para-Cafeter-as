@@ -6,7 +6,7 @@
 
 ## 🎯 ¿Qué problema resuelve?
 
-Muchos negocios como cafeterías aún gestionan su inventario de forma manual, lo que ocasiona errores y desorganización.  
+Muchos negocios como cafeterías aún gestionan su inventario de forma manual, lo que ocasiona errores, pérdida de información y desorganización.  
 **CaféGestión** permite digitalizar este proceso, ofreciendo una herramienta sencilla para registrar productos, controlar precios y stock, todo en una interfaz accesible y fácil de usar.
 
 ---
@@ -14,19 +14,45 @@ Muchos negocios como cafeterías aún gestionan su inventario de forma manual, l
 ## 👥 Usuarios o actores principales
 
 - Propietarios de cafeterías
-- Encargados o empleados de administración
-- En una evolución futura: cajeros con diferentes roles
+- Encargados o empleados administrativos
+- En una evolución futura: cajeros con roles limitados
 
 ---
 
 ## ✅ Funcionalidades actuales
 
-- Registro y edición de productos con nombre, categoría, precio, stock y descripción
+- Registro y edición de productos (nombre, categoría, precio, stock y descripción)
 - Eliminación de productos
-- Visualización en tabla dinámica
-- Búsqueda en tiempo real
-- Almacenamiento de datos persistente con `localStorage`
+- Visualización de productos en una tabla dinámica
+- Búsqueda en tiempo real por nombre, categoría o descripción
+- Almacenamiento persistente con `localStorage`
+- Aplicación del **patrón de diseño Singleton** para la gestión de productos
 
+---
+
+## 🧠 Patrón Singleton aplicado
+
+Se implementó el **patrón Singleton** en el archivo `js/productoManager.js`, garantizando que solo exista una instancia del gestor de productos durante toda la ejecución de la aplicación.  
+Esto mejora el control de acceso a los datos, evita duplicaciones innecesarias y centraliza la lógica de almacenamiento y manipulación de productos.
+
+---
+
+## 🛠 Estructura del proyecto
+
+CaféGestión/
+│
+├── assets/
+│ ├── css/
+│ │ └── style.css
+│ └── img/
+│ └── Logo.png, Logo.ico
+│
+├── js/
+│ ├── productoManager.js ← Singleton implementado aquí
+│ └── app.js ← Lógica principal conectada al Singleton
+│
+├── index.html
+├── README.md
 
 ---
 
@@ -34,17 +60,15 @@ Muchos negocios como cafeterías aún gestionan su inventario de forma manual, l
 
 1. Clona o descarga el repositorio.
 2. Abre el archivo `index.html` en tu navegador.
-3. Usa el formulario para agregar productos.
+3. Usa el formulario para agregar productos con sus atributos.
 4. Edita o elimina productos directamente desde la tabla.
-5. Todo se guarda automáticamente en el navegador gracias a `localStorage`.
-
+5. Filtra productos usando la barra de búsqueda.
+6. Toda la información se guarda automáticamente en `localStorage`.
 ---
 
 ## 👨‍🎓 Autor
 
 - **Luis Carlos Garavito Agámez**
-- **Willian Esteven Ramos Argel**
-- **Kener David Guazne Alvarez**
 - Ingeniería de Software II – 2025
 
 ---
