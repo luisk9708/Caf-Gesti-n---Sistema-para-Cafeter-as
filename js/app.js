@@ -1,6 +1,8 @@
 // ===============================
-// 🎯 CaféGestión - JS Principal
+// 🎯 CaféGestión - JS Principal usando Singleton
 // ===============================
+
+const gestor = ProductoManagerSingleton.getInstancia(); // Usamos la instancia única
 
 // 📌 Selección de elementos del DOM
 const form = document.getElementById('product-form');
@@ -14,98 +16,58 @@ const tableBody = document.getElementById('product-table-body');
 const searchInput = document.getElementById('search');
 
 // ===============================
-// 📦 Funciones de almacenamiento local
-// ===============================
-
-// Obtener productos desde localStorage
-function getProducts() {
-    return JSON.parse(localStorage.getItem('products')) || [];
-}
-
-// Guardar productos en localStorage
-function saveProducts(products) {
-    localStorage.setItem('products', JSON.stringify(products));
-}
-
-// Guardar o actualizar un producto
-function saveProduct(product) {
-    let products = getProducts();
-    const index = products.findIndex(p => p.id === product.id);
-
-    if (index !== -1) {
-        products[index] = product; // actualizar
-    } else {
-        products.push(product); // nuevo
-    }
-
-    saveProducts(products);
-}
-
-// Eliminar un producto por ID
-function deleteProduct(id) {
-    let products = getProducts();
-    products = products.filter(product => product.id !== id);
-    saveProducts(products);
-}
-
-// Buscar producto por ID
-function findProductById(id) {
-    return getProducts().find(p => p.id === id);
-}
-
-// ===============================
-// 🎛️ Funciones de UI
+// 🎛️ Funciones de UI con Singleton
 // ===============================
 
 // Mostrar productos en la tabla, aplicando búsqueda si es necesario
 function renderTable() {
-    const products = getProducts();
-    const filter = searchInput.value.trim().toLowerCase();
+  const products = gestor.obtenerTodos();
+  const filter = searchInput.value.trim().toLowerCase();
 
-    const filtered = products.filter(product =>
-        product.name.toLowerCase().includes(filter) ||
-        product.category.toLowerCase().includes(filter) ||
-        product.description.toLowerCase().includes(filter)
-    );
+  const filtered = products.filter(product =>
+    product.name.toLowerCase().includes(filter) ||
+    product.category.toLowerCase().includes(filter) ||
+    product.description.toLowerCase().includes(filter)
+  );
 
-    tableBody.innerHTML = '';
+  tableBody.innerHTML = '';
 
-    filtered.forEach(product => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${product.name}</td>
-            <td>${product.category}</td>
-            <td>$${parseFloat(product.price).toFixed(2)}</td>
-            <td>${product.stock}</td>
-            <td>${product.description}</td>
-            <td>
-                <button onclick="editProduct('${product.id}')">Editar</button>
-                <button onclick="handleDelete('${product.id}')">Eliminar</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
+  filtered.forEach(product => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${product.name}</td>
+      <td>${product.category}</td>
+      <td>$${parseFloat(product.price).toFixed(2)}</td>
+      <td>${product.stock}</td>
+      <td>${product.description}</td>
+      <td>
+        <button onclick="editProduct('${product.id}')">Editar</button>
+        <button onclick="handleDelete('${product.id}')">Eliminar</button>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
 }
 
 // Cargar datos al formulario para edición
 function editProduct(id) {
-    const product = findProductById(id);
-    if (!product) return;
+  const product = gestor.buscarPorId(id);
+  if (!product) return;
 
-    nameInput.value = product.name;
-    categoryInput.value = product.category;
-    priceInput.value = product.price;
-    stockInput.value = product.stock;
-    descriptionInput.value = product.description;
-    idInput.value = product.id;
+  nameInput.value = product.name;
+  categoryInput.value = product.category;
+  priceInput.value = product.price;
+  stockInput.value = product.stock;
+  descriptionInput.value = product.description;
+  idInput.value = product.id;
 }
 
 // Confirmar y eliminar producto
 function handleDelete(id) {
-    if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-        deleteProduct(id);
-        renderTable();
-    }
+  if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+    gestor.eliminar(id);
+    renderTable();
+  }
 }
 
 // ===============================
@@ -114,29 +76,34 @@ function handleDelete(id) {
 
 // Evento al enviar el formulario
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const name = nameInput.value.trim();
-    const category = categoryInput.value.trim();
-    const price = parseFloat(priceInput.value).toFixed(2);
-    const stock = parseInt(stockInput.value);
-    const description = descriptionInput.value.trim();
+  const name = nameInput.value.trim();
+  const category = categoryInput.value.trim();
+  const price = parseFloat(priceInput.value).toFixed(2);
+  const stock = parseInt(stockInput.value);
+  const description = descriptionInput.value.trim();
 
-    if (!name || !category || isNaN(price) || isNaN(stock)) return;
+  if (!name || !category || isNaN(price) || isNaN(stock)) return;
 
-    const product = {
-        id: idInput.value || crypto.randomUUID(),
-        name,
-        category,
-        price,
-        stock,
-        description
-    };
+  const product = {
+    id: idInput.value || crypto.randomUUID(),
+    name,
+    category,
+    price,
+    stock,
+    description
+  };
 
-    saveProduct(product);
-    renderTable();
-    form.reset();
-    idInput.value = '';
+  if (idInput.value) {
+    gestor.actualizar(product.id, product);
+  } else {
+    gestor.agregar(product);
+  }
+
+  renderTable();
+  form.reset();
+  idInput.value = '';
 });
 
 // Búsqueda en tiempo real
