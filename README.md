@@ -39,6 +39,7 @@ Esto mejora el control de acceso a los datos, evita duplicaciones innecesarias y
 
 ## 🛠 Estructura del proyecto
 
+```plaintext
 CaféGestión/
 ├── activos/
 │   ├── css/
