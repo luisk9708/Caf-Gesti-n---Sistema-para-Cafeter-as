@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CaféGestión - Sistema para Cafeterías</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="assets/img/Logo.ico" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación superior -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <i class="fas fa-coffee brand-icon"></i>
+                <span class="brand-text">CaféGestión</span>
+            </div>
+            <div class="navbar-stats">
+                <div class="stat-item">
+                    <i class="fas fa-boxes"></i>
+                    <span class="stat-value" id="total-products">0</span>
+                    <span class="stat-label">Productos</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span class="stat-value" id="total-value">$0</span>
+                    <span class="stat-label">Inventario</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section con título principal -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Control Inteligente de Inventario</h1>
+                <p class="hero-subtitle">Gestiona tus productos de manera eficiente con nuestra plataforma moderna</p>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-chart">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor principal con las dos tarjetas -->
+    <div class="main-wrapper">
+        <div class="cards-container">
+            <!-- Tarjeta de Nuevo Producto -->
+            <div class="product-form-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Nuevo Producto
+                    </h2>
+                    <p class="card-subtitle">Agrega productos a tu inventario</p>
+                </div>
+                
+                <form id="product-form" class="product-form">
+                    <input type="hidden" id="product-id" />
+
+                    <div class="form-field">
+                        <label for="name" class="field-label">
+                            <i class="fas fa-tag field-icon"></i>
+                            Nombre del producto
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            class="field-input" 
+                            placeholder="William" 
+                            required 
+                        />
+                    </div>
+
+                    <div class="form-field">
+                        <label for="category" class="field-label">
+                            <i class="fas fa-layer-group field-icon"></i>
+                            Categoría
+                        </label>
+                        <select id="category" class="field-select" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="Bebida caliente">Bebida caliente</option>
+                            <option value="Bebida fría">Bebida fría</option>
+                            <option value="Panadería">Panadería</option>
+                            <option value="Repostería">Repostería</option>
+                            <option value="Snack">Snack</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="price" class="field-label">
+                                <i class="fas fa-dollar-sign field-icon"></i>
+                                Precio
+                            </label>
+                            <input 
+                                type="number" 
+                                id="price" 
+                                class="field-input" 
+                                placeholder="0.00" 
+                                min="0" 
+                                step="0.01" 
+                                required 
+                            />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="stock" class="field-label">
+                                <i class="fas fa-cubes field-icon"></i>
+                                Stock
+                            </label>
+                            <input 
+                                type="number" 
+                                id="stock" 
+                                class="field-input" 
+                                placeholder="0" 
+                                min="0" 
+                                step="1" 
+                                required 
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="description" class="field-label">
+                            <i class="fas fa-align-left field-icon"></i>
+                            Descripción
+                        </label>
+                        <textarea 
+                            id="description" 
+                            class="field-textarea" 
+                            placeholder="Descripción del producto..."
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-plus"></i>
+                        Agregar Producto
+                    </button>
+                    
+                    <button type="button" class="cancel-button" id="cancel-edit" style="display: none;">
+                        <i class="fas fa-times"></i>
+                        Cancelar Edición
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tarjeta de Inventario de Productos -->
+            <div class="inventory-card">
+                <div class="card-header">
+                    <div class="header-left">
+                        <h2 class="card-title">
+                            <i class="fas fa-boxes"></i>
+                            Inventario de Productos
+                        </h2>
+                        <p class="card-subtitle">Gestiona y controla todos tus productos</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="export-button">
+                            <i class="fas fa-download"></i>
+                            Exportar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Barra de filtros y búsqueda -->
+                <div class="filters-section">
+                    <div class="search-field">
+                        <i class="fas fa-search search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="search" 
+                            class="search-input" 
+                            placeholder="Buscar productos..." 
+                        />
+                    </div>
+                    
+                    <div class="filter-field">
+                        <select id="category-filter" class="category-filter">
+                            <option value="">Todas las categorías</option>
+                            <option value="Bebida caliente">Bebida caliente</option>
+                            <option value="Bebida fría">Bebida fría</option>
+                            <option value="Panadería">Panadería</option>
+                            <option value="Repostería">Repostería</option>
+                            <option value="Snack">Snack</option>
+                        </select>
+                    </div>
+                    
+                    <div class="view-switcher">
+                        <button class="view-button active" data-view="table">
+                            <i class="fas fa-table"></i>
+                        </button>
+                        <button class="view-button" data-view="grid">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vista de tabla -->
+                <div class="table-section" id="table-view">
+                    <div class="table-wrapper">
+                        <table class="products-table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable-header">
+                                        <span>Producto</span>
+                                        <i class="fas fa-sort sort-icon"></i>
+                                    </th>
+                                    <th class="sortable-header">
+                                        <span>Categoría</span>
+                                        <i class="fas fa-sort sort-icon"></i>
+                                    </th>
+                                    <th class="sortable-header">
+                                        <span>Precio</span>
+                                        <i class="fas fa-sort sort-icon"></i>
+                                    </th>
+                                    <th class="sortable-header">
+                                        <span>Stock</span>
+                                        <i class="fas fa-sort sort-icon"></i>
+                                    </th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="product-table-body">
+                                <!-- Los productos se renderizan aquí por JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Estado cuando no hay productos -->
+                    <div class="empty-state" id="empty-state" style="display: none;">
+                        <div class="empty-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <h3 class="empty-title">No hay productos en el inventario</h3>
+                        <p class="empty-message">Comienza agregando tu primer producto usando el formulario de la izquierda</p>
+                    </div>
+                </div>
+
+                <!-- Vista de grid (tarjetas) -->
+                <div class="grid-section" id="grid-view" style="display: none;">
+                    <div class="products-grid" id="products-grid">
+                        <!-- Las tarjetas de productos se renderizan aquí por JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para eliminar -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmar eliminación</h3>
+                <button class="modal-close-button" aria-label="Cerrar modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <p class="confirmation-message">
+                    ¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="button-secondary" id="cancel-delete">
+                    Cancelar
+                </button>
+                <button class="button-danger" id="confirm-delete">
+                    <i class="fas fa-trash"></i>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para notificaciones toast -->
+    <div class="toast-notifications" id="toast-container"></div>
+
+    <!-- Scripts JS -->
+    <script type="module" src="js/app.js"></script>
+    
+</body>
+</html>
