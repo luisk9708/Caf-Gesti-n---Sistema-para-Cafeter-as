@@ -25,8 +25,10 @@ Evaluar la interfaz de usuario actual del sistema **CaféGestión** y proponer m
 - ✅ Optimización del **formulario de productos** con campos mejor organizados.  
 - ✅ Agregado de íconos descriptivos en botones clave (Agregar, Editar, Eliminar).  
 - ✅ Mejora en la **vista de flujo de caja** para una lectura más rápida de ingresos y egresos.  
-- ✅ Revisión del esquema de colores para mayor contraste y legibilidad.  
-
+- ✅ Revisión del esquema de colores para mayor contraste y legibilidad.
+- ✅ Añadido de indicadores de stock bajo con alertas visuales y de color.
+- ✅ Ajuste de espaciados y alineación de elementos para una apariencia más ordenada.
+  
 ---
 
 ## 3. Evidencias del Rediseño
