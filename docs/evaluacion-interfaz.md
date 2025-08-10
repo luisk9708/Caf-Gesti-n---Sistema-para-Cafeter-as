@@ -31,8 +31,8 @@ Evaluar la interfaz de usuario actual del sistema **CaféGestión** y proponer m
 
 ## 3. Evidencias del Rediseño
 
-- 📷 **Diseño Digital:** Ver archivo `docs/rediseño_cafegestion.png`  
-- ✍️ **Boceto tipo wireframe:** Ver archivo `docs/wireframe_cafegestion.png`  
+- 📷 **Diseño Digital:** Ver archivo `docs/rediseño_interfaz.png`  
+- ✍️ **Boceto tipo wireframe:** Ver archivo `docs/rediseño_interfaz_dibujo.png`  
 
 ---
 
