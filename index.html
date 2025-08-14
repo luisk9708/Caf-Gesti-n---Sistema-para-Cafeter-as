@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CaféGestión - Sistema para Cafeterías</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="assets/img/Logo.ico" />
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- Encabezado principal -->
+    <header style="text-align: center; padding-top: 20px;"> 
+        <img src="assets/img/Logo.png" alt="Logo de CaféGestión" width="170" height="170">
+        <h1><i class="fa-solid fa-mug-hot"></i> CaféGestión</h1>
+        <p>Control de productos e inventario para tu cafetería</p>
+    </header>
+
+    <!-- Formulario para agregar o editar productos -->
+    <section class="form-section">
+        <h2><i class="fa-solid fa-pen-to-square"></i> Agregar / Editar Producto</h2>
+        <form id="product-form">
+            <input type="hidden" id="product-id" />
+
+            <label for="name"><i class="fa-solid fa-tag"></i> Nombre del producto:</label>
+            <input type="text" id="name" placeholder="Ej: Capuchino" required />
+
+            <label for="category"><i class="fa-solid fa-list"></i> Categoría:</label>
+            <select id="category" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="Bebida caliente">Bebida caliente</option>
+                <option value="Bebida fría">Bebida fría</option>
+                <option value="Panadería">Panadería</option>
+                <option value="Repostería">Repostería</option>
+                <option value="Snack">Snack</option>
+            </select>
+
+            <label for="price"><i class="fa-solid fa-dollar-sign"></i> Precio ($):</label>
+            <input type="number" id="price" min="0" step="0.01" placeholder="Ej: 8500" required />
+
+            <label for="stock"><i class="fa-solid fa-boxes-stacked"></i> Stock disponible:</label>
+            <input type="number" id="stock" min="0" step="1" placeholder="Ej: 25" required />
+
+            <label for="description"><i class="fa-solid fa-align-left"></i> Descripción:</label>
+            <textarea id="description" placeholder="Descripción breve del producto..."></textarea>
+
+            <button type="submit"><i class="fa-solid fa-save"></i> Guardar Producto</button>
+        </form>
+    </section>
+
+    <!-- Sección de listado de productos -->
+    <section class="table-section">
+        <h2><i class="fa-solid fa-list-ul"></i> Lista de Productos</h2>
+
+        <div style="margin-bottom: 15px; position: relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; top: 10px; color: #999;"></i>
+            <input type="text" id="search" placeholder="Buscar producto..." style="padding-left: 35px;" />
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th><i class="fa-solid fa-tag"></i> Nombre</th>
+                    <th><i class="fa-solid fa-list"></i> Categoría</th>
+                    <th><i class="fa-solid fa-dollar-sign"></i> Precio</th>
+                    <th><i class="fa-solid fa-boxes-stacked"></i> Stock</th>
+                    <th><i class="fa-solid fa-align-left"></i> Descripción</th>
+                    <th><i class="fa-solid fa-gears"></i> Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="product-table-body">
+                <!-- Productos renderizados por JS -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Scripts JS -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

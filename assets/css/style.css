@@ -1,0 +1,206 @@
+/* 🎨 Fuente y colores base */
+:root {
+    --color-principal: #6f4e37; /* Marrón café */
+    --color-secundario: #c69c6d; /* Dorado café */
+    --color-acento: #d4a373; /* Beige tostado */
+    --color-fondo: #f8f5f0; /* Fondo claro */
+    --color-texto: #3e2c1c;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+/* 🧭 Encabezado */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(to right, var(--color-principal), var(--color-secundario));
+    color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+header img {
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 5px 0;
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* 📋 Secciones */
+section {
+    margin: 40px auto;
+    max-width: 1000px;
+    padding: 0 15px;
+}
+
+/* 📝 Formulario */
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+form:hover {
+    transform: translateY(-3px);
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: var(--color-secundario);
+    outline: none;
+    box-shadow: 0 0 6px rgba(198, 156, 109, 0.5);
+}
+
+form button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--color-principal);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.05em;
+    transition: background 0.3s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: var(--color-secundario);
+    transform: scale(1.02);
+}
+
+/* 📊 Tabla */
+.table-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.table-section input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+tr:hover {
+    background-color: rgba(198, 156, 109, 0.08);
+}
+
+td button {
+    margin-right: 6px;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+}
+
+td button:hover {
+    transform: scale(1.05);
+}
+
+td button:nth-child(1) {
+    background-color: #27ae60;
+    color: white;
+}
+
+td button:nth-child(2) {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* 📱 Responsivo */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        background: white;
+        padding: 10px;
+    }
+
+    td {
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+    }
+
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--color-principal);
+    }
+}
