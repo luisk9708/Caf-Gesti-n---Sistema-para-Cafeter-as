@@ -21,19 +21,27 @@ Muchos negocios como cafeterías aún gestionan su inventario de forma manual, l
 
 ## ✅ Funcionalidades actuales
 
-- Registro y edición de productos (nombre, categoría, precio, stock y descripción)
-- Eliminación de productos
-- Visualización de productos en una tabla dinámica
-- Búsqueda en tiempo real por nombre, categoría o descripción
-- Almacenamiento persistente con `localStorage`
-- Aplicación del **patrón de diseño Singleton** para la gestión de productos
+- Agregar y editar productos (nombre, categoría, precio, stock y descripción).
+- Eliminar productos de forma rápida.
+- Búsqueda en tiempo real por nombre, categoría o descripción.
+- Tabla dinámica con datos actualizados al instante.
+- Persistencia de datos mediante localStorage.
+- Diseño responsive adaptable a móviles y escritorio.
+- Interfaz mejorada con iconos (Font Awesome) y estilos personalizados.
+- Patrón de diseño Singleton para centralizar la gestión de productos.
 
 ---
 
 ## 🧠 Patrón Singleton aplicado
 
-Se implementó el **patrón Singleton** en el archivo `js/productoManager.js`, garantizando que solo exista una instancia del gestor de productos durante toda la ejecución de la aplicación.  
-Esto mejora el control de acceso a los datos, evita duplicaciones innecesarias y centraliza la lógica de almacenamiento y manipulación de productos.
+* Patrón Singleton
+Implementado en js/singletongaravito/productoManager.js, asegura que solo exista una instancia del gestor de productos.
+
+* Separación de responsabilidades
+
+- productoManager.js → Lógica de gestión de productos.
+- storage.js → Manejo de almacenamiento en localStorage.
+- app.js → Conexión con la interfaz y eventos del usuario.
 
 ---
 
@@ -47,10 +55,12 @@ CaféGestión/
 │   ├── img/
 │   │   ├── Logo.png
 │   │   └── Logo.ico
-│   └── js/
-│       ├── productoManager.js   ← Singleton implementado aquí
-│       └── app.js               ← Lógica principal conectada al Singleton
-├── index.html
+├── js/
+│   ├── app.js                        ← Lógica principal (UI + Singleton)
+│   └── singletongaravito/
+│       ├── productoManager.js        ← Singleton gestor de productos
+│       └── storage.js                ← Manejo de localStorage
+├── index.html                        ← Interfaz principal
 └── README.md
 ``` 
 
@@ -59,11 +69,13 @@ CaféGestión/
 ## 📦 Cómo usar el sistema
 
 1. Clona o descarga el repositorio.
-2. Abre el archivo `index.html` en tu navegador.
-3. Usa el formulario para agregar productos con sus atributos.
-4. Edita o elimina productos directamente desde la tabla.
-5. Filtra productos usando la barra de búsqueda.
-6. Toda la información se guarda automáticamente en `localStorage`.
+2. Abra la carpeta del proyecto en Visual Studio Code.
+3. Instale la extensión Open Live Server (Ritwick Dey) desde el Marketplace de VS Code.
+4. Haga clic derecho sobre index.html y seleccione "Abrir con Live Server".
+5. Gestiona productos desde la interfaz.
+6. Edite o elimine registros directamente desde las tablas dinámicas.
+7. Filtra información usando las barras de búsqueda.
+8. Toda la información se guarda automáticamente en localStorage.
 ---
 
 ## 👨‍🎓 Autor
